@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MarvelPoC</string>
+    <string name="action_settings">Settings</string>
+    <string name="downloading_characters">Downloading characters&#8230;</string>
+    <string name="error_downloading_characters">Error downloading characters</string>
+    <string name="detail">Details</string>
+    <string name="downloading_comics">Downloading comics&#8230;</string>
+    <string name="error_downloading_comics">Error downloading comics</string>
+    <string name="number_comics">Number of comics:</string>
+    <string name="selected">Selected:</string>
+    <string name="description">Description:</string>
+    <string name="characters">Characters:</string>
+    <string name="no_available">Information not available</string>
+</resources>

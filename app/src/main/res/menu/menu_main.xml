@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="marvelpoc.wallapop.alucine.com.marvelpoc.MainActivity" >
+
+    <item
+        android:id="@+id/menu_progress"
+        android:visible="false"
+        app:showAsAction="always"
+        app:actionLayout="@layout/progress_indeterminate"
+        tools:ignore="AlwaysShowAction,UnusedAttribute"/>
+</menu>
