@@ -12,7 +12,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main">
 
-    <com.alucine.wallapop.marvelpoc.helpers.EmptyRecyclerView
+    <com.alucine.zinio.marvelpoc.helpers.EmptyRecyclerView
         android:id="@+id/cardList"
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideInset"
