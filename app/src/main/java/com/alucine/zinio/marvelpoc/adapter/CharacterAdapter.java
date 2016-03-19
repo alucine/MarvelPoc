@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.alucine.zinio.marvelpoc.R;
 import com.alucine.zinio.marvelpoc.object.CharacterInfo;
-import com.karumi.marvelapiclient.model.CharactersDto;
-import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

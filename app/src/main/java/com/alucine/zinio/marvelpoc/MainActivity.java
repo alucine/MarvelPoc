@@ -55,19 +55,19 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_launcher);
 
-        final EmptyRecyclerView recList = (EmptyRecyclerView) findViewById(R.id.cardList);
-        recList.setHasFixedSize(true);
+        final EmptyRecyclerView cardList = (EmptyRecyclerView) findViewById(R.id.cardList);
+        cardList.setHasFixedSize(true);
         final LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        recList.setEmptyView(findViewById(R.id.emptyCharacters));
-        recList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        cardList.setLayoutManager(llm);
+        cardList.setEmptyView(findViewById(R.id.emptyCharacters));
+        cardList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                visibleItemCount = recList.getChildCount();
+                visibleItemCount = cardList.getChildCount();
                 totalItemCount = llm.getItemCount();
                 firstVisibleItem = llm.findFirstVisibleItemPosition();
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         ca = new CharacterAdapter(characterData,this);
-        recList.setAdapter(ca);
+        cardList.setAdapter(ca);
     }
 
     private void requestCharacters(){
