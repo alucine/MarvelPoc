@@ -3,6 +3,7 @@ package com.alucine.zinio.marvelpoc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements
     private ArrayList<CharacterInfo> characterData = new ArrayList<>();
     private int previousTotal = 0;
     private boolean loading = true;
-    private int visibleThreshold = 4;
+    private final int visibleThreshold = 5;
     private int firstVisibleItem;
     private int visibleItemCount;
     private int totalItemCount;
@@ -57,8 +58,7 @@ public class MainActivity extends AppCompatActivity implements
 
         final EmptyRecyclerView cardList = (EmptyRecyclerView) findViewById(R.id.cardList);
         cardList.setHasFixedSize(true);
-        final LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        final LinearLayoutManager llm = new GridLayoutManager(this, 2);
         cardList.setLayoutManager(llm);
         cardList.setEmptyView(findViewById(R.id.emptyCharacters));
         cardList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity implements
                         previousTotal = totalItemCount;
                     }
                 }
-                if (!loading && (totalItemCount - visibleItemCount)
-                        <= (firstVisibleItem + visibleThreshold)) {
+
+                if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
                     loading = true;
                     requestCharacters();
                 }

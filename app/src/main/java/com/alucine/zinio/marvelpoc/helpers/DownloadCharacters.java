@@ -14,6 +14,7 @@ public class DownloadCharacters extends AsyncTask<Void, Void, MarvelResponse<Cha
     private final String priKey = "ff05a4d55ac07ddfc8590dec657a5e1156a5ad93";
     private DownloadCharactersListener listener;
     private int offset;
+    private final int MAX_CHARACTERS = 20;
 
     public DownloadCharacters(DownloadCharactersListener listener,int offset) {
         this.listener = listener;
@@ -25,7 +26,7 @@ public class DownloadCharacters extends AsyncTask<Void, Void, MarvelResponse<Cha
                 new MarvelApiConfig.Builder(pubKey, priKey).debug().build();
 
         CharacterApiClient characterApiClient = new CharacterApiClient(marvelApiConfig);
-        CharactersQuery spider = CharactersQuery.Builder.create().withOffset(offset).withLimit(10).build();
+        CharactersQuery spider = CharactersQuery.Builder.create().withOffset(offset).withLimit(MAX_CHARACTERS).build();
         try {
             MarvelResponse<CharactersDto> all = characterApiClient.getAll(spider);
             return all;
