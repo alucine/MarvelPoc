@@ -27,6 +27,8 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.util.ArrayList;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class MainActivity extends AppCompatActivity implements
         DownloadCharacters.DownloadCharactersListener, CharacterAdapter.OnClickCardListener {
     private CharacterAdapter ca;
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements
         TextView emptyCharacters = (TextView) findViewById(R.id.emptyCharacters);
 
         if ( response != null ) {
-            if ( response.getCode() == 200 ) {
+            if ( response.getCode() == HttpsURLConnection.HTTP_OK ) {
                 for (CharacterDto characterDto : response.getResponse().getCharacters()) {
                     CharacterInfo characterInfo = new CharacterInfo();
                     characterInfo.title = characterDto.getName();
