@@ -1,10 +1,12 @@
 package com.alucine.zinio.marvelpoc.adapter;
 
+import android.provider.ContactsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,9 +42,17 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     @Override
     public void onBindViewHolder(CharacterViewHolder characterViewHolder, final int i) {
-        CharacterInfo ci = contactList.get(i);
+        final CharacterInfo ci = contactList.get(i);
         ImageLoader.getInstance().displayImage(ci.imageUrl, characterViewHolder.imageCharacter,options);
         characterViewHolder.titleCharacter.setText(ci.title);
+        characterViewHolder.btCharacterFavorite.setBackgroundResource(ci.isFavourite ? R.drawable.ic_favorite : R.drawable.ic_unfavorite);
+        characterViewHolder.btCharacterFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ci.isFavourite = !ci.isFavourite;
+                notifyDataSetChanged();
+            }
+        });
         characterViewHolder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,12 +74,14 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         protected ImageView imageCharacter;
         protected TextView titleCharacter;
         protected CardView card_view;
+        protected ImageButton btCharacterFavorite;
 
         public CharacterViewHolder(View v) {
             super(v);
             imageCharacter =  (ImageView) v.findViewById(R.id.imageCharacter);
             titleCharacter = (TextView)  v.findViewById(R.id.titleCharacter);
             card_view = (CardView) v.findViewById(R.id.card_view);
+            btCharacterFavorite = (ImageButton) v.findViewById(R.id.btCharacterFavorite);
         }
     }
 
