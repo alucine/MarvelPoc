@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alucine.zinio.marvelpoc.adapter.CharacterAdapter;
 import com.alucine.zinio.marvelpoc.helpers.DownloadCharacters;
 import com.alucine.zinio.marvelpoc.helpers.EmptyRecyclerView;
+import com.alucine.zinio.marvelpoc.helpers.FavoriteManager;
 import com.alucine.zinio.marvelpoc.object.CharacterInfo;
 import com.karumi.marvelapiclient.model.CharacterDto;
 import com.karumi.marvelapiclient.model.CharactersDto;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements
     private int totalItemCount;
     private MenuItem mProgressMenu;
     private Toolbar toolbar;
+    private ArrayList<String> favorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements
 
         ca = new CharacterAdapter(characterData,this);
         cardList.setAdapter(ca);
+
+        favorite = FavoriteManager.loadFavorites(this);
     }
 
     private void requestCharacters(){
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements
                     characterInfo.title = characterDto.getName();
                     characterInfo.imageUrl = characterDto.getThumbnail().getImageUrl(MarvelImage.Size.STANDARD_XLARGE);
                     characterInfo.comicId = Integer.parseInt(characterDto.getId());
+                    characterInfo.isFavourite = ( favorite == null ? false : favorite.contains(characterDto.getId()));
                     characterData.add(characterInfo);
                 }
                 toolbar.setSubtitle(getString(R.string.characters) + " " + characterData.size());

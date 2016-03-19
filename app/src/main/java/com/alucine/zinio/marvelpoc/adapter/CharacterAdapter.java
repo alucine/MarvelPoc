@@ -1,5 +1,6 @@
 package com.alucine.zinio.marvelpoc.adapter;
 
+import android.content.Context;
 import android.provider.ContactsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alucine.zinio.marvelpoc.R;
+import com.alucine.zinio.marvelpoc.helpers.FavoriteManager;
 import com.alucine.zinio.marvelpoc.object.CharacterInfo;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -50,6 +52,12 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
             @Override
             public void onClick(View view) {
                 ci.isFavourite = !ci.isFavourite;
+
+                if ( ci.isFavourite)
+                    FavoriteManager.addFavorite((Context) listener,"" + ci.comicId);
+                else
+                    FavoriteManager.removeFavorite((Context) listener,"" + ci.comicId);
+
                 notifyDataSetChanged();
             }
         });
